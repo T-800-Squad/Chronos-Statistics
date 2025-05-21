@@ -1,7 +1,5 @@
 package moduloEstadisticas.Stadistics.controller;
 
-import moduloEstadisticas.Stadistics.service.*;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,32 +8,30 @@ import moduloEstadisticas.Stadistics.DTO.*;
 
 @RestController
 @RequestMapping("/statistics")
-public class StatisticsController {
-    @Autowired
-    private StatisticsService statisticsService;
+public class ReportController {
 
-    @GetMapping("/appointments")
+    /*@GetMapping("/appointments")
     public ResponseEntity<AppointmentsStatsDTO> getAppointmentsStats() {
-        return ResponseEntity.ok(statisticsService.generateAppointmentsStats());
+        return null;
     }
 
     @GetMapping("/recreational-rooms")
     public ResponseEntity<RecreationalRoomsStatsDTO> getRecreationalRoomsStats() {
-        return ResponseEntity.ok(statisticsService.generateRecreationalRoomsStats());
+        return null;
     }
 
     @GetMapping("/extracurricular-classes")
     public ResponseEntity<ClassesStatsDTO> getClassesStats() {
-        return ResponseEntity.ok(statisticsService.generateClassesStats());
+        return null;
     }
 
     @GetMapping("/sports-loans")
     public ResponseEntity<SportsLoansStatsDTO> getSportsLoansStats() {
-        return ResponseEntity.ok(statisticsService.generateSportsLoansStats());
+        return null;
     }
 
     @GetMapping("/gym")
     public ResponseEntity<GymStatsDTO> getGymStats() {
-        return ResponseEntity.ok(statisticsService.generateGymStats());
-    }
+        return null;
+    }*/
 }
