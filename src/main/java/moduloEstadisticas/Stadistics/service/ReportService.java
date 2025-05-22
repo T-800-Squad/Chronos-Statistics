@@ -3,39 +3,48 @@ package moduloEstadisticas.Stadistics.service;
 import moduloEstadisticas.Stadistics.DTO.ReportDTO;
 import moduloEstadisticas.Stadistics.model.Report;
 import moduloEstadisticas.Stadistics.repository.ReportRepositoryJPA;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Service
-public class ReportService  implements ReportServiceInterface{
+public class ReportService implements ReportServiceInterface{
 
-    private final ReportRepositoryJPA reportRepository;
+    @Autowired
+    private ReportRepositoryJPA repository;
 
-    public ReportService(ReportRepositoryJPA reportRepository) {
-        this.reportRepository = reportRepository;
+    @Autowired
+    private FileGenerationService fileGenerationService;
+
+    public void saveReport(ReportDTO reportDTO) throws IOException {
+        Report report = new Report();
+        report.setModule(reportDTO.getModule());
+        report.setActivity(reportDTO.getActivity());
+        report.setEnrolled(reportDTO.getEnrollment());
+        report.setAttended(reportDTO.getAttendance());
+        report.setPercentageAttended((double) reportDTO.getAttendance() / reportDTO.getEnrollment() * 100);
+        report.setDateTime(LocalDateTime.now());
+        report.setUserReport(reportDTO.getUserReport());
+        report.setDependency(reportDTO.getDependency());
+        report.setPdfFile(fileGenerationService.generatePdf(report));
+        report.setExcelFile(fileGenerationService.generateExcel(report));
+        repository.save(report);
     }
 
-    public Report generateReport(ReportDTO requestDTO) {
-        // 1. Verifica si ya existe un reporte con los mismos filtros
-        // 2. Si existe, lo devuelve (o lo marca como existente)
-        // 3. Si no, genera el nuevo reporte con los datos filtrados
-        // 4. Guarda el reporte en la DB
-        // 5. Retorna el objeto Report
-        return null;
+    public Optional<Report> getReport(Long id) {
+        return repository.findById(id);
     }
 
-    public List<Report> getAllReports() {
-        return reportRepository.findAll();
+    public List<Report> filterReports(String userReport, String module, LocalDateTime from, LocalDateTime to) {
+        return repository.findByUserReportAndModuleAndDateTimeBetween(userReport, module, from, to);
     }
 
-    public Report getReportById(Long id) {
-        //return reportRepository.findById(String.valueOf(id)).orElseThrow(() -> new ReportNotFoundException(id));
-        return null;
-    }
-
-    public void exportReport(Long reportId, String format) {
-        // Lógica para exportar a PDF o Excel
+    public List<Report> filterByDates(LocalDateTime from, LocalDateTime to) {
+        return repository.findByDateTimeBetween(from, to);
     }
 }
 
