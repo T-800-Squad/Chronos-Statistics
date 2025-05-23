@@ -9,7 +9,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import moduloEstadisticas.Stadistics.DTO.*;
-
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -39,13 +38,13 @@ public class ReportController {
     }
 
     @GetMapping("/filter")
-    public ResponseEntity<List<Report>> filterReports(@RequestParam String tipoUsuario,
-                                                      @RequestParam String tipoServicio,
-                                                      @RequestParam String desde,
-                                                      @RequestParam String hasta) {
-        LocalDateTime desdeDate = LocalDateTime.parse(desde);
-        LocalDateTime hastaDate = LocalDateTime.parse(hasta);
-        return ResponseEntity.ok(reportService.filterReports(tipoUsuario, tipoServicio, desdeDate, hastaDate));
+    public ResponseEntity<List<Report>> filterReports(@RequestParam String user,
+                                                      @RequestParam String module,
+                                                      @RequestParam String from,
+                                                      @RequestParam String to) {
+        LocalDateTime desdeDate = LocalDateTime.parse(from);
+        LocalDateTime hastaDate = LocalDateTime.parse(to);
+        return ResponseEntity.ok(reportService.filterReports(user, module, desdeDate, hastaDate));
     }
 
     @GetMapping("/pdf/{id}")

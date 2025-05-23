@@ -1,5 +1,7 @@
 package moduloEstadisticas.Stadistics.DTO;
 
+import java.time.LocalDate;
+
 public class ReportDTO {
     private String id_report;
     private String module;
@@ -8,6 +10,8 @@ public class ReportDTO {
     private int attendance;
     private String userReport;
     private String dependency;
+    private LocalDate startDate;
+    private LocalDate endDate;
 
     // Getters y setters
     public String getId_report() { return id_report; }
@@ -24,4 +28,8 @@ public class ReportDTO {
     public void setUserReport(String userReport) { this.userReport = userReport; }
     public String getDependency() { return dependency; }
     public void setDependency(String dependency) { this.dependency = dependency; }
+    public LocalDate getStartDate() { return startDate; }
+    public void setStartDate(LocalDate startDate) { this.startDate = startDate; }
+    public LocalDate getEndDate() { return endDate; }
+    public void setEndDate(LocalDate endDate) { this.endDate = endDate; }
 }

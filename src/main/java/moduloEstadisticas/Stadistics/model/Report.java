@@ -2,6 +2,7 @@ package moduloEstadisticas.Stadistics.model;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -17,19 +18,22 @@ public class Report {
     private int enrolled;
     private int attended;
 
-    @Column(name="percantageAttended")
+    @Column(name="date_start")
+    private LocalDate dateStart;
+
+    @Column(name="date_end")
+    private LocalDate dateEnd;
+
+    @Column(name="percantage_attended")
     private double percentageAttended;
 
-    @Column(name="date_time")
-    private LocalDateTime dateTime;
+    @Column(name="date_creation")
+    private LocalDateTime dateCreation;
 
     @Column(name="user_report")
     private String userReport;
 
     private String dependency;
-
-    @Column(name="creation_date")
-    private LocalDateTime creationDate;
 
     @Lob
     @Column(name = "pdf_file")
@@ -53,8 +57,8 @@ public class Report {
     public int getAttended() {return attended;}
     public void setPercentageAttended(double percentageAttended) { this.percentageAttended = percentageAttended;}
     public double getPercentageAttended() {return percentageAttended;}
-    public void setDateTime(LocalDateTime dateTime) {this.dateTime = dateTime;}
-    public LocalDateTime getDateTime() {return dateTime;}
+    public void setDateCreation(LocalDateTime dateCreation) {this.dateCreation = dateCreation;}
+    public LocalDateTime getDateCreation() {return dateCreation;}
     public void setUserReport(String userReport) {this.userReport = userReport;}
     public String getUserReport() {return userReport;}
     public void setDependency(String dependency) {this.dependency = dependency;}
@@ -63,5 +67,9 @@ public class Report {
     public byte[] getExcelFile() {return excelFile;}
     public void setPdfFile(byte[] pdfFile) {this.pdfFile = pdfFile;}
     public byte[] getPdfFile() {return pdfFile;}
+    public LocalDate getDateEnd() {return dateEnd;}
+    public void setDateEnd(LocalDate dateEnd) {this.dateEnd = dateEnd;}
+    public LocalDate getDateStart() {return dateStart;}
+    public void setDateStart(LocalDate dateStart) {this.dateStart = dateStart;}
 }
 

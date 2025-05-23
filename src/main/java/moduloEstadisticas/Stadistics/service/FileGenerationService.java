@@ -26,7 +26,7 @@ public class FileGenerationService implements FileGenerationServiceInterface{
         doc.add(new Paragraph("Inscritos: " + report.getEnrolled()));
         doc.add(new Paragraph("Asistentes: " + report.getAttended()));
         doc.add(new Paragraph("Porcentaje de asistencia: " + report.getPercentageAttended() + "%"));
-        doc.add(new Paragraph("Fecha: " + report.getDateTime()));
+        doc.add(new Paragraph("Fecha: " + report.getDateCreation()));
         doc.add(new Paragraph("Usuario: " + report.getUserReport()));
         doc.add(new Paragraph("Dependencia: " + report.getDependency()));
 
@@ -49,7 +49,7 @@ public class FileGenerationService implements FileGenerationServiceInterface{
                 {"Inscritos", String.valueOf(report.getEnrolled())},
                 {"Asistentes", String.valueOf(report.getAttended())},
                 {"% Asistencia", String.valueOf(report.getPercentageAttended())},
-                {"Fecha", String.valueOf(report.getDateTime())},
+                {"Fecha", String.valueOf(report.getDateCreation())},
                 {"Usuario", report.getUserReport()},
                 {"Dependencia", report.getDependency()}
         };

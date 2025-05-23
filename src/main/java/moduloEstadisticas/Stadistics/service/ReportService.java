@@ -27,7 +27,9 @@ public class ReportService implements ReportServiceInterface{
         report.setEnrolled(reportDTO.getEnrollment());
         report.setAttended(reportDTO.getAttendance());
         report.setPercentageAttended((double) reportDTO.getAttendance() / reportDTO.getEnrollment() * 100);
-        report.setDateTime(LocalDateTime.now());
+        report.setDateCreation(LocalDateTime.now()); //Pendiente por mover
+        report.setDateStart(reportDTO.getStartDate());
+        report.setDateEnd(reportDTO.getEndDate());
         report.setUserReport(reportDTO.getUserReport());
         report.setDependency(reportDTO.getDependency());
         report.setPdfFile(fileGenerationService.generatePdf(report));
